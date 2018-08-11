@@ -64,6 +64,11 @@ public class GameManager : MonoBehaviour
     /// <param name="spawnPosition">Posição em que a nova entidade sera spawnada</param>
     public static void SpawnAt(string tag, Vector3 spawnPosition)
     {
+        if(_staticEntityPrefabs.Count <= 0)
+        {
+            Debug.Log("Erro, lista estática de prefbs vazia");
+            return;
+        }
         foreach (GameObject item in _staticEntityPrefabs)
         {
             if (item.CompareTag(tag))
@@ -72,7 +77,7 @@ public class GameManager : MonoBehaviour
                 GameObject newGameObject = Instantiate(item);
                 newGameObject.transform.position = spawnPosition;
                 AddEntity(newGameObject);
-                break;
+                return;
             }
         }
         Debug.Log("ERRO! não possuo prefabs com a tag " + tag + " na minha EntityPrefabs");

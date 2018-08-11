@@ -6,60 +6,71 @@ using UnityEngine.AI;
 
 public class IANoobsandOrcs : MonoBehaviour
 {
-
+    public GameObject _target;
     Transform target;
-    GameObject _target;
     public float speed = 5f;
     public float timeBetweenAttacks = 0.5f;
     public int Enemydamage = 4;
     public int Playerdamage = 2;
     public bool attackArea;
+    public bool playerattack;
     float timer;
-
-
     Health health;
 
+    private void Start()
+    {
+        health = GetComponent<Health>();
+        GameManager.AddEntity(gameObject);
+    }
     void Update()
     {
         if (this.CompareTag("Player"))
-        {
-            _target = GameObject.FindGameObjectWithTag("Enemy");
-            timer += Time.deltaTime;
-            target = _target.transform;
-            if(attackArea == false)
-            {
-                Chase();
-            }
-        
-            if(timer >= timeBetweenAttacks && attackArea && health.EnemyHealth > 0)
-            {
-                Attack();
-            }
+        {  
+         _target = GameManager.FindNearAt("Enemy", transform.position);
 
-            if(health.EnemyHealth <= 0)
+            if (_target != null)
             {
-                Destroy(_target);
-                Debug.Log("Enemy is dead");
+                timer += Time.deltaTime;
+                target = _target.transform;
+                if (attackArea == false)
+                {
+                    Chase();
+                }
+
+                if (timer >= timeBetweenAttacks && attackArea && health.currentHealth > 0 && _target.GetComponent<Health>().currentHealth > 0)
+                {
+                    Attack();
+                }
+                else if(timer >= timeBetweenAttacks && playerattack && health.currentHealth > 0)
+                {
+                    Attack();
+                }
+                
+
             }
+            
         }
+
         else if (this.CompareTag("Enemy"))
         {
-            _target = GameObject.FindGameObjectWithTag("Player");
-            timer += Time.deltaTime;
-            target = _target.transform;
-            if(attackArea == false)
+         
+           _target = GameManager.FindNearAt("Player", transform.position);
+
+            if (_target != null)
             {
-                Chase();
-            }
-        
-            if (timer >= timeBetweenAttacks && attackArea && health.PlayerHealth > 0)
-            {
-                Attack();
-            }
-            if(health.PlayerHealth == 0)
-            {
-               // Destroy(_target);  
-                Debug.Log("Player is dead");
+                timer += Time.deltaTime;
+                target = _target.transform;
+
+                if (attackArea == false)
+                {
+                    Chase();
+                }
+
+                if (timer >= timeBetweenAttacks && attackArea && health.currentHealth > 0 && _target.GetComponent<Health>().currentHealth > 0)
+                {
+                    Attack();
+                }
+             
             }
         }
 
@@ -69,13 +80,17 @@ public class IANoobsandOrcs : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
 
-        if (this.CompareTag("Player") && (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Player")))
+        if (this.CompareTag("Player") && other.gameObject.CompareTag("Enemy"))
         {
             attackArea = true;
         }
         else if (this.CompareTag("Enemy") && other.gameObject.CompareTag("Player"))
         {
             attackArea = true;
+        }
+        else if(this.CompareTag("Player") && other.gameObject.CompareTag("Player"))
+        {
+            playerattack = true;
         }
 
     }
@@ -90,24 +105,26 @@ public class IANoobsandOrcs : MonoBehaviour
         {
             attackArea = false;
         }
-    }
+        else if (this.CompareTag("Player") && other.gameObject.CompareTag("Player"))
+        {
+            playerattack = true;
+        }
 
-    void FindTheClosest()
-    {
-        //float distTarget = Mathf.Infinity;
-        //closesttarget = null;
-        //alltarget = GameObject.FindGameObjectsWithTag("");
     }
 
     void Chase()
     {
-        Vector3 targetDir = target.position - transform.position;
 
+        Vector3 targetDir = target.position - transform.position;
+       
         float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, 180);
 
         transform.Translate(Vector3.up * Time.deltaTime * speed);
+        
+       
+        
     }
 
    
@@ -116,15 +133,26 @@ public class IANoobsandOrcs : MonoBehaviour
     {
         timer = 0f;
 
-        if(this.CompareTag("Player") && (health.EnemyHealth > 0 || health.PlayerHealth > 0))
+        if(this.CompareTag("Player"))
         {
-            health.Damage(Playerdamage);
-            Debug.Log("Enemy health is " + health.EnemyHealth);
+            if(attackArea)
+            {
+                health.Damage(Playerdamage);
+
+                Debug.Log("Enemy health is " + _target.GetComponent<Health>().currentHealth);
+            }
+           else if(playerattack)
+            {
+                health.Damage(Playerdamage);
+                Debug.Log("Player attacking player, the current health is " + health.currentHealth);
+            }
         }
-        else if(this.CompareTag("Enemy") && health.PlayerHealth > 0)
+        
+      
+        else if(this.CompareTag("Enemy"))
         {
             health.Damage(Enemydamage);
-            Debug.Log("Player health is " + health.PlayerHealth);
+            Debug.Log("Player health is " + _target.GetComponent<Health>().currentHealth);
         }
 
     }

@@ -5,65 +5,52 @@ using UnityEngine;
 public class Health : MonoBehaviour {
 
     public int startingHealth = 100;
-  
-    public int PlayerHealth;
-    public int EnemyHealth;
+    public int currentHealth;
 
-    bool damaged;
-    bool isdead;
+    public bool PlayerisDead;
+    public bool EnemyisDead;
 
-    private void Awake()
+    IANoobsandOrcs ia;
+
+    private void Start()
     {
-      
-        PlayerHealth = startingHealth;
-        EnemyHealth = startingHealth;
-    }
-
-    private void Update()
-    {
-        if(damaged)
-        {
-            Debug.Log("damaged");
-        }
+        ia = GetComponent<IANoobsandOrcs>();
+        currentHealth = startingHealth;
     }
 
     public void Damage(int amount)
     {
-        damaged = true;
-
-        if(this.CompareTag("Player"))
+        if(ia.attackArea)
         {
-           EnemyHealth -= amount;
-
-            if (EnemyHealth <= 0 && !isdead)
-            {
-                Death();
-            }
+            ia._target.GetComponent<Health>().currentHealth -= amount;
         }
-        else if(this.CompareTag("Enemy"))
+        else if(ia.playerattack)
         {
-            PlayerHealth -= amount;
-
-            if (PlayerHealth <= 0 && !isdead)
-            {
-                Death();
-            }
+            currentHealth -= amount;
         }
         
-    }
 
-    void Death()
-    {
-        isdead = true;
-
-        if(this.CompareTag("Player"))
-        {
-            Debug.Log("Game Over");
+        if (this.CompareTag("Player"))
+        { 
+            if (ia._target.GetComponent<Health>().currentHealth <= 0 && !EnemyisDead)
+            {
+               EnemyisDead = true;
+                GameManager.DestroyEntity(ia._target);
+                
+            }
+           
         }
         else if(this.CompareTag("Enemy"))
         {
-            Destroy(this.gameObject);
-            Debug.Log("Enemy is dead");
+            if (ia._target.GetComponent<Health>().currentHealth <= 0 && !PlayerisDead)
+            {
+                PlayerisDead = true;
+                Debug.Log("Game Over");
+            }
+           
         }
+
     }
+    
+    
 }
