@@ -127,6 +127,14 @@ public class GameManager : MonoBehaviour
         Destroy(entity);
     }
 
+    public static void SetDificult(int dif)
+    {
+        if (dif >= 0)
+        {
+            GameManager.instance.GetComponent<WaveSpawner>().SetDificult(dif);
+        }
+    }
+
     void Update()
     {
     }

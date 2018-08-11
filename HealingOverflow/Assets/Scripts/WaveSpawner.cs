@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
-    private int _dificult = 0;
+    private float _dificult = 0;
     [SerializeField] int startWaveSize = 2;
     [SerializeField] float waveProportionByLevel = 1.5f;
     [SerializeField] List<Transform> spawnPoints;
@@ -58,5 +58,10 @@ public class WaveSpawner : MonoBehaviour {
         _dificult++;
         delayReduction *= 0.9f;
         Invoke("GetHarder", dificultDelay);
+    }
+
+    public void SetDificult(int dificult)
+    {
+        _dificult = dificult;
     }
 }
