@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float moveSpeed = 0.1f;
 	private Vector3 destination;
 	private float moveProgress;
+	public bool MovementLock { get; set; }
 	private void Update()
 	{
 		if (moveProgress != 1.0f)
@@ -19,10 +20,13 @@ public class PlayerController : MonoBehaviour
 	}
 	public void OnWorldCLick()
 	{
-		Vector3 screenPos = Input.mousePosition;
-		Vector2 worldpos  = mainCamera.ScreenToWorldPoint(screenPos);
+		if (!MovementLock)
+		{
+			Vector3 screenPos = Input.mousePosition;
+			Vector2 worldpos  = mainCamera.ScreenToWorldPoint(screenPos);
 
-		moveProgress = 0.0f;
-		destination = worldpos;
+			moveProgress = 0.0f;
+			destination = worldpos;
+		}
 	}
 }

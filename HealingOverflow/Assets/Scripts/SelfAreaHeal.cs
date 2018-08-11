@@ -3,7 +3,7 @@ public class SelfAreaHeal : Magic
 {
 	[SerializeField] private GameObject healingCirclePrefab;
     [SerializeField] private float healingCircleDuration;
-    [SerializeField] private float healingCirclePower;
+    [SerializeField] private int healingCirclePower;
     protected override void OnCast()
     {
         HealingCircle healingCircle = Instantiate(healingCirclePrefab, transform.position, transform.rotation).GetComponent<HealingCircle>();
