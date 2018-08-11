@@ -5,15 +5,18 @@ using UnityEngine;
 public class Health : MonoBehaviour {
 
     public int startingHealth = 100;
-    public int currentHealth;
   
+    public int PlayerHealth;
+    public int EnemyHealth;
+
     bool damaged;
     bool isdead;
 
     private void Awake()
     {
-        currentHealth = startingHealth;
-        
+      
+        PlayerHealth = startingHealth;
+        EnemyHealth = startingHealth;
     }
 
     private void Update()
@@ -28,12 +31,25 @@ public class Health : MonoBehaviour {
     {
         damaged = true;
 
-        currentHealth -= amount;
-
-        if(currentHealth <= 0 && !isdead)
+        if(this.CompareTag("Player"))
         {
-            Death();
+           EnemyHealth -= amount;
+
+            if (EnemyHealth <= 0 && !isdead)
+            {
+                Death();
+            }
         }
+        else if(this.CompareTag("Enemy"))
+        {
+            PlayerHealth -= amount;
+
+            if (PlayerHealth <= 0 && !isdead)
+            {
+                Death();
+            }
+        }
+        
     }
 
     void Death()
@@ -46,6 +62,7 @@ public class Health : MonoBehaviour {
         }
         else if(this.CompareTag("Enemy"))
         {
+            Destroy(this.gameObject);
             Debug.Log("Enemy is dead");
         }
     }

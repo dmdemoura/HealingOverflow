@@ -31,12 +31,12 @@ public class IANoobsandOrcs : MonoBehaviour
                 Chase();
             }
         
-            if(timer >= timeBetweenAttacks && attackArea && health.currentHealth > 0)
+            if(timer >= timeBetweenAttacks && attackArea && health.EnemyHealth > 0)
             {
                 Attack();
             }
 
-            if(health.currentHealth <= 0)
+            if(health.EnemyHealth <= 0)
             {
                 Destroy(_target);
                 Debug.Log("Enemy is dead");
@@ -52,13 +52,13 @@ public class IANoobsandOrcs : MonoBehaviour
                 Chase();
             }
         
-            if (timer >= timeBetweenAttacks && attackArea && health.currentHealth > 0)
+            if (timer >= timeBetweenAttacks && attackArea && health.PlayerHealth > 0)
             {
                 Attack();
             }
-            if(health.currentHealth == 0)
+            if(health.PlayerHealth == 0)
             {
-                Destroy(_target);  
+               // Destroy(_target);  
                 Debug.Log("Player is dead");
             }
         }
@@ -116,15 +116,15 @@ public class IANoobsandOrcs : MonoBehaviour
     {
         timer = 0f;
 
-        if(this.CompareTag("Player") && health.currentHealth > 0)
+        if(this.CompareTag("Player") && (health.EnemyHealth > 0 || health.PlayerHealth > 0))
         {
             health.Damage(Playerdamage);
-            Debug.Log("Enemy health is " + health.currentHealth);
+            Debug.Log("Enemy health is " + health.EnemyHealth);
         }
-        else if(this.CompareTag("Enemy") && health.currentHealth > 0)
+        else if(this.CompareTag("Enemy") && health.PlayerHealth > 0)
         {
             health.Damage(Enemydamage);
-            Debug.Log("Player health is " + health.currentHealth);
+            Debug.Log("Player health is " + health.PlayerHealth);
         }
 
     }
