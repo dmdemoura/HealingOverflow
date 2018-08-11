@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    public bool debug;
     //==========Declaração do singleton=============
     public static GameManager instance = null;
     void Awake()
@@ -20,15 +21,18 @@ public class GameManager : MonoBehaviour
 
         _entityList = new List<GameObject>();
         _staticEntityPrefabs = EntityPrefabs;
-        Debug.Log("Lista de prefabs na lista normal:");
-        foreach (GameObject x in EntityPrefabs)
+        if (debug)
         {
-            Debug.Log("Prefab: " + x.name);
-        }
-        Debug.Log("Lista de prefabs na lista estatica:");
-        foreach (GameObject x in _staticEntityPrefabs)
-        {
-            Debug.Log("Prefab: " + x.name);
+            Debug.Log("Lista de prefabs na lista normal:");
+            foreach (GameObject x in EntityPrefabs)
+            {
+                Debug.Log("Prefab: " + x.name);
+            }
+            Debug.Log("Lista de prefabs na lista estatica:");
+            foreach (GameObject x in _staticEntityPrefabs)
+            {
+                Debug.Log("Prefab: " + x.name);
+            }
         }
     }
     //=============================================
@@ -68,11 +72,10 @@ public class GameManager : MonoBehaviour
         {
             if (item.CompareTag(tag))
             {
-                Debug.Log("Achei esse prefab: " + item.name);
                 GameObject newGameObject = Instantiate(item);
                 newGameObject.transform.position = spawnPosition;
                 AddEntity(newGameObject);
-                break;
+                return;
             }
         }
         Debug.Log("ERRO! não possuo prefabs com a tag " + tag + " na minha EntityPrefabs");

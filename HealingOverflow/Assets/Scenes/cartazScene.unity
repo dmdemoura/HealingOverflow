@@ -123,26 +123,31 @@ GameObject:
   - component: {fileID: 938818919}
   - component: {fileID: 938818918}
   - component: {fileID: 938818917}
+  - component: {fileID: 938818920}
+  - component: {fileID: 938818921}
   - component: {fileID: 938818916}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Finish
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &938818916
-SphereCollider:
+--- !u!58 &938818916
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 938818915}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &938818917
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -192,12 +197,43 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 938818915}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 12, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &938818920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938818915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1f0f6b97748594ea87a9ea52bcfa57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &938818921
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 938818915}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &963829206
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +246,7 @@ GameObject:
   - component: {fileID: 963829209}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b91de8f771193b4297ef21575d880be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   EntityPrefabs:
   - {fileID: 1782921319}
   - {fileID: 938818915}
@@ -250,9 +287,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 963829206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf1f0f6b97748594ea87a9ea52bcfa57, type: 3}
+  m_Script: {fileID: 11500000, guid: 68e4335335476ed4bb20b89047d4a9f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startWaveSize: 5
+  waveProportionByLevel: 1.5
+  spawnPoints: []
+  spawnDelay: 4
+  delayReduction: 1
+  minimumDelay: 0.5
 --- !u!1 &1707846726
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +452,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1782921319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
