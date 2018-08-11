@@ -17,28 +17,44 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        EntitysPrefabs = _EntitysPrefabs;
+
+        _entityList = new List<GameObject>();
+        _staticEntityPrefabs = EntityPrefabs;
+        Debug.Log("Lista de prefabs na lista normal:");
+        foreach (GameObject x in EntityPrefabs)
+        {
+            Debug.Log("Prefab: " + x.name);
+        }
+        Debug.Log("Lista de prefabs na lista estatica:");
+        foreach (GameObject x in _staticEntityPrefabs)
+        {
+            Debug.Log("Prefab: " + x.name);
+        }
     }
     //=============================================
+
     private static List<GameObject> _entityList;
     [Header("Lista de prefabs a serem spawnados")]
-    static List<GameObject> EntitysPrefabs;
-    [SerializeField] List<GameObject> _EntitysPrefabs;
+
+    //Lista de prefab statica para ser usada nas funções estaticas
+    static List<GameObject> _staticEntityPrefabs;
+    [SerializeField] List<GameObject> EntityPrefabs;
 
     /// <summary>
     /// Adiciona uma entidade a lista de entidades
     /// </summary>
     /// <param name="newEntity"></param>
     public static void AddEntity(GameObject newEntity) {
-        for (int i = 0; i < EntitysPrefabs.Count; i++)
+        for (int i = 0; i < _staticEntityPrefabs.Count; i++)
         {
-            if (newEntity.CompareTag(EntitysPrefabs[i].tag))
+            if (newEntity.CompareTag(_staticEntityPrefabs[i].tag))
             {
                 _entityList.Add(newEntity);
                 return;
             }
         }
         Debug.Log("ERRO, tentando adicionar uma entidade que não faz aprte da lsita de entidades");
+        
     }
 
     /// <summary>
@@ -48,9 +64,18 @@ public class GameManager : MonoBehaviour
     /// <param name="spawnPosition">Posição em que a nova entidade sera spawnada</param>
     public static void SpawnAt(string tag, Vector3 spawnPosition)
     {
-        GameObject newGameObject = Instantiate(EntitysPrefabs.Find(x => x.CompareTag(tag)));
-        newGameObject.transform.position = spawnPosition;
-        AddEntity(newGameObject);
+        foreach (GameObject item in _staticEntityPrefabs)
+        {
+            if (item.CompareTag(tag))
+            {
+                Debug.Log("Achei esse prefab: " + item.name);
+                GameObject newGameObject = Instantiate(item);
+                newGameObject.transform.position = spawnPosition;
+                AddEntity(newGameObject);
+                break;
+            }
+        }
+        Debug.Log("ERRO! não possuo prefabs com a tag " + tag + " na minha EntityPrefabs");
     }
 
     /// <summary>
