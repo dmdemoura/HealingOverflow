@@ -14,7 +14,7 @@ public class HealingCircle : MonoBehaviour
 		this.duration = duration;
 		this.healingPower = healingPower;
 		activated = true;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 30.0f);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 5.0f);
 
         foreach (Collider2D collider in colliders)
         {

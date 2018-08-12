@@ -13,31 +13,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD
     m_Controller: {fileID: 0}
-=======
-    m_Controller: {fileID: 9100000}
->>>>>>> origin/demoura
   - m_Name: Horizontal
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD
     m_Controller: {fileID: 0}
-=======
-    m_Controller: {fileID: 9100000}
->>>>>>> origin/demoura
   - m_Name: Vertical
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-<<<<<<< HEAD
     m_Controller: {fileID: 0}
-=======
-    m_Controller: {fileID: 9100000}
->>>>>>> origin/demoura
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -397,11 +385,7 @@ AnimatorStateMachine:
     m_Position: {x: 768, y: -108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102733090933252872}
-<<<<<<< HEAD
     m_Position: {x: 804, y: 300, z: 0}
-=======
-    m_Position: {x: 780, y: 240, z: 0}
->>>>>>> origin/demoura
   - serializedVersion: 1
     m_State: {fileID: 1102525824300710414}
     m_Position: {x: 768, y: 168, z: 0}
@@ -416,11 +400,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-<<<<<<< HEAD
   m_AnyStatePosition: {x: 1056, y: 36, z: 0}
-=======
-  m_AnyStatePosition: {x: 516, y: 60, z: 0}
->>>>>>> origin/demoura
   m_EntryPosition: {x: 288, y: 84, z: 0}
   m_ExitPosition: {x: 84, y: -24, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
