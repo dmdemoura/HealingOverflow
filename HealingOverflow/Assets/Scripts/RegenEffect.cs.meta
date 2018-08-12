@@ -3,7 +3,9 @@ guid: d0a418f282dd39a4cbb6d954c10c3f94
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - regenAnimationPrefab: {fileID: 1943586688464834, guid: c2cf626105ea2b7449ca538aa0fbfbcc,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

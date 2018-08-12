@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class RegenEffect : MonoBehaviour
 {
+    private GameObject regenAnimation;
     private bool activated = false;
     private int healingPower;
     private float healingDuration;
     private Health health;
+
     private void HealPulse()
     {
         health.Heal(healingPower);
@@ -14,7 +16,7 @@ public class RegenEffect : MonoBehaviour
     {
         Destroy(this);
     }
-    public void Activate(int healingPower, float healingPulseRate, float healingDuration)
+    public void Activate(int healingPower, float healingPulseRate, float healingDuration, GameObject regenAnimationPrefab)
     {
         this.healingPower = healingPower;
         this.healingDuration = healingDuration;
@@ -22,5 +24,6 @@ public class RegenEffect : MonoBehaviour
         activated = true;
         InvokeRepeating("HealPulse", 0.0f, healingPulseRate);
         Invoke("SelfDestroy", healingDuration);
+        GameObject regenAnimation = Instantiate(regenAnimationPrefab, transform);
     }
 }
