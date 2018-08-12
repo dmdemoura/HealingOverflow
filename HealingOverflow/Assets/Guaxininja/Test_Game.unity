@@ -237,7 +237,7 @@ Prefab:
         type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: ec97a1c41613b9f4182b771dd11b1c8e, type: 3}
+      objectReference: {fileID: 8300000, guid: f83863b2d824fd548b54c759843b5bc5, type: 3}
     - target: {fileID: 82580862210634388, guid: 90b3425bece71d240b8a35a0cd31084c,
         type: 2}
       propertyPath: OutputAudioMixerGroup
@@ -285,6 +285,44 @@ Prefab:
     - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224789234052318774, guid: e8e1ea5970fbb3a4a90924b7ce67873c,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224358680009589128, guid: e8e1ea5970fbb3a4a90924b7ce67873c,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224358680009589128, guid: e8e1ea5970fbb3a4a90924b7ce67873c,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845251543256210, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114600744658622312, guid: e8e1ea5970fbb3a4a90924b7ce67873c,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 114256809403335286, guid: e8e1ea5970fbb3a4a90924b7ce67873c,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 114604831989717826, guid: e8e1ea5970fbb3a4a90924b7ce67873c,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 0.64705884
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761397320591510, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
