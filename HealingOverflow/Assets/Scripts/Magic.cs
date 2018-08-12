@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 public abstract class Magic : MonoBehaviour
 {
     [SerializeField] private float cooldown;
     [SerializeField] private KeyCode activateKey;
-    [SerializeField] private PercentBar cooldownBar;
+    [SerializeField] private Image cooldownImage;
     [SerializeField] private float movementCooldown;
     private PlayerController playerController;
     private float cooldownActivateTime;
@@ -20,11 +21,11 @@ public abstract class Magic : MonoBehaviour
         if (Input.GetKeyDown(activateKey))
             TryCasting();
 
-        if (cooldownBar)
+        if (cooldownImage)
             if (!IsLocked && isOnCooldown)
-                cooldownBar.Value = (Time.realtimeSinceStartup - cooldownActivateTime)/cooldown * 100;
+                cooldownImage.fillAmount = (Time.realtimeSinceStartup - cooldownActivateTime)/cooldown;
             else
-                cooldownBar.Value = 100.0f;
+                cooldownImage.fillAmount = 1f;
 
         OnUpdate();
     }
