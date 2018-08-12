@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    public bool debug;
+    public bool debug;//variavel apra printar informaçoes de debug no log
+    public static bool _debug;
     //==========Declaração do singleton=============
     public static GameManager instance = null;
+    
     void Awake()
     {
         if (instance == null)
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour
         _staticEntityPrefabs = EntityPrefabs;
         if (debug)
         {
+            _debug = debug;
             Debug.Log("Lista de prefabs na lista normal:");
             foreach (GameObject x in EntityPrefabs)
             {
@@ -44,11 +48,36 @@ public class GameManager : MonoBehaviour
     static List<GameObject> _staticEntityPrefabs;
     [SerializeField] List<GameObject> EntityPrefabs;
 
+    public static int orcsMortos;
+    public static int totalHealing;
+
+    private void StartGame()
+    {
+        orcsMortos = 0;
+        totalHealing = 0;
+        SceneManager.LoadScene("Game");
+    }
+
+    public void EndGame(){
+        foreach (GameObject x in _entityList)
+        {
+            Debug.Log("Prefab: " + x.name);
+        }
+        _entityList.RemoveAll(x => true);
+        Debug.Log("EntityList.cout = " + _entityList.Count);
+        SceneManager.LoadScene("GameOver");
+    }
+
     /// <summary>
     /// Adiciona uma entidade a lista de entidades
     /// </summary>
     /// <param name="newEntity"></param>
     public static void AddEntity(GameObject newEntity) {
+        if(_entityList.Contains(newEntity)){
+            if(_debug)Debug.Log("A entidade "+newEntity.name+" ja existe");
+            return;
+        }
+
         for (int i = 0; i < _staticEntityPrefabs.Count; i++)
         {
             if (newEntity.CompareTag(_staticEntityPrefabs[i].tag))
@@ -119,17 +148,20 @@ public class GameManager : MonoBehaviour
     /// <param name="entity">Referencia para o GameObject da entidade a ser destuida</param>
     public static void DestroyEntity(GameObject entity)
     {
-       
         if (_entityList.Contains(entity))
         {
+            if(entity.CompareTag("Player")){
+                instance.EndGame();
+            }
+            
             _entityList.Remove(entity);
+            Destroy(entity);
         }
         else
         {
-            Debug.Log("ERRO! Entidade tentando ser distruidafoi adicionada ao GameManager");
+            Debug.Log("ERRO! Entidade tentando ser distruida não foi adicionada ao GameManager");
             return;
         }
-        Destroy(entity);
     }
 
     public static void SetDificult(int dif)
@@ -140,7 +172,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static void PauseGame(){
+        Time.timeScale = 0;
+    }
+    public static void DespauseGame(){
+       Time.timeScale = 1;
+    }
+
     void Update()
-    {
+    {  
+        
     }
 }

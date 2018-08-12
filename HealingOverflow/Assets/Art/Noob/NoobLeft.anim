@@ -3,7 +3,11 @@
 --- !u!74 &7400000
 AnimationClip:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
+  m_PrefabParentObject: {fileID: 0}
+=======
   m_CorrespondingSourceObject: {fileID: 0}
+>>>>>>> origin/demoura
   m_PrefabInternal: {fileID: 0}
   m_Name: NoobLeft
   serializedVersion: 6

@@ -30,11 +30,27 @@ public static class NameGenerator{
 		"Gamer",
 		"Super",
 		"Mega",
-		"Giga",
 		"Hell",
 		"Heaven",
 		"Basement",
 		"Nobody"
+	};
+
+	private static string[] reports = {
+		"support noob didnt heal",
+		"FUCKING SHITHEAD REFUSES TO HEAL ME",
+		"Report this fkin cleric, if you're not healing don't pick lol",
+		"OMEGALUL picks cleric and doesn't heal",
+		"Hey, healer: Alt+F4 heals, in case you don´t know",
+		"try to heal your mom after I bang her",
+		"lol wat a fkin noob",
+		"such a good healer kappa",
+		"report this useless healer",
+		"healer is so easy and this guy still sucks lol",
+		"ff, healer throwing the game",
+		"BR?",
+		"HIJO DE MIERDA",
+		"fucking 9 year old"
 	};
 
 	private static string[,] specialCharacters =  {
@@ -85,5 +101,22 @@ public static class NameGenerator{
 		}
 
 		return username.ToString();
+	}
+
+	public static string GenerateChat(int amount)
+	{
+		System.Text.StringBuilder chat = new System.Text.StringBuilder();
+		List<int> usedIndexes = new List<int>();
+		int currentIndex = Random.Range(0, reports.Length);
+		for(int i = 0; i < amount; i++)
+		{
+			while(usedIndexes.Contains(currentIndex))
+				currentIndex = Random.Range(0, reports.Length);
+
+			usedIndexes.Add(currentIndex);
+			chat.Append("[" + GenerateUsername() + "]: ");
+			chat.AppendLine(reports[currentIndex]);
+		}
+		return chat.ToString();
 	}
 }

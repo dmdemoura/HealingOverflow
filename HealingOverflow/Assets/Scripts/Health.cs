@@ -19,9 +19,11 @@ public class Health : MonoBehaviour {
     }
     private void Update()
     {
-        if (currentHealth == 200)
+        if (currentHealth >= 200)
         {
             currentHealth = 100;
+            percentbar.Value = currentHealth;
+
             Vector3 PlayerPos = this.transform.position + Vector3.right;
             GameManager.SpawnAt(gameObject.tag, PlayerPos); 
         }
@@ -32,7 +34,6 @@ public class Health : MonoBehaviour {
         }
     
     }
-
 
     public void Damage(int amount)
     {
