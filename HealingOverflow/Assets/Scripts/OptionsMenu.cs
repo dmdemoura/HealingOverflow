@@ -7,6 +7,11 @@ public class OptionsMenu : MonoBehaviour {
     public int initialDifficulty;
     public int testint;
 
+    private void Start()
+    {
+        QualitySettings.SetQualityLevel(1);
+    }
+
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("Volume", volume);
