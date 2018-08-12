@@ -5,15 +5,26 @@ using UnityEngine;
 public class PercentBar : MonoBehaviour
 {
 	[SerializeField] private RectTransform bar;
+	[SerializeField] private RectTransform extraBar; //For when value > 100
 	public float Value
 	{ 
 		get
 		{
-			return bar.anchorMax.x;
+			return bar.anchorMax.x + extraBar.anchorMax.x;
 		}
 		set
 		{
-			bar.anchorMax = new Vector2(value, bar.anchorMax.y);
+			float barValue = 0f;
+			float extraValue = 0f;
+			if (value <= 100f)
+				barValue = value;
+			else
+			{
+				barValue = 100f;
+				extraValue = value - 100f;
+			}
+			bar.anchorMax = new Vector2(barValue, bar.anchorMax.y);
+			extraBar.anchorMax = new Vector2(extraValue, extraBar.anchorMax.y);
 		}
 	}
 }

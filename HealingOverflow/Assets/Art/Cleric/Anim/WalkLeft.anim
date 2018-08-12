@@ -29,7 +29,11 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
+<<<<<<< HEAD
         time: 0.33333334
+=======
+        time: 0.8
+>>>>>>> origin/demoura
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -48,17 +52,29 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: f7ee150ce876a9d4cb350158f73424ea, type: 3}
+<<<<<<< HEAD
     - time: 0.083333336
       value: {fileID: 21300000, guid: 36a48518fe741bf43a13b025c9b2897b, type: 3}
     - time: 0.16666667
       value: {fileID: 21300000, guid: efdf7aaf83d70ec41842d6bb1b902017, type: 3}
     - time: 0.25
+=======
+    - time: 0.2
+      value: {fileID: 21300000, guid: 36a48518fe741bf43a13b025c9b2897b, type: 3}
+    - time: 0.4
+      value: {fileID: 21300000, guid: efdf7aaf83d70ec41842d6bb1b902017, type: 3}
+    - time: 0.6
+>>>>>>> origin/demoura
       value: {fileID: 21300000, guid: 78d4872fa62868a45b65bd678ad6ff97, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
+<<<<<<< HEAD
   m_SampleRate: 12
+=======
+  m_SampleRate: 5
+>>>>>>> origin/demoura
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -89,7 +105,11 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
+<<<<<<< HEAD
     m_StopTime: 0.33333334
+=======
+    m_StopTime: 0.8
+>>>>>>> origin/demoura
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -118,7 +138,11 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
+<<<<<<< HEAD
         time: 0.33333334
+=======
+        time: 0.8
+>>>>>>> origin/demoura
         value: 1
         inSlope: Infinity
         outSlope: Infinity

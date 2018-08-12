@@ -18,8 +18,11 @@ public class IANoobsandOrcs : MonoBehaviour
     private Rigidbody2D mRigidbody;
     Health health;
 
+    private Animator mAnim;
+
     private void Start()
     {
+        mAnim = GetComponentInChildren<Animator>();
         health = GetComponent<Health>();
 
         mRigidbody = GetComponent<Rigidbody2D>();
@@ -46,7 +49,9 @@ public class IANoobsandOrcs : MonoBehaviour
                 if (timer >= timeBetweenAttacks)
                 {
                     Attack();
-                   
+                    mAnim.SetBool("Atacking", true);
+                }else{
+                    mAnim.SetBool("Atacking", false);
                 }
             }
             else
@@ -84,6 +89,7 @@ public class IANoobsandOrcs : MonoBehaviour
             }
         
         }
+        mAnim.SetFloat("Horizontal", mRigidbody.velocity.x);
 
     }
 
@@ -141,7 +147,7 @@ public class IANoobsandOrcs : MonoBehaviour
         
         foreach (Collider2D collider in colliders)
         {
-            if(collider.gameObject != this.gameObject)
+            if(collider.gameObject != this.gameObject && collider.gameObject.GetComponent<Health>().currentHealth > 0 && health.currentHealth > 0)
             {
                 collider.GetComponent<Health>().Damage(damage);
               
