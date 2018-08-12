@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         mAnim.SetFloat("Vertical",mRigidy.velocity.normalized.y);
     }
     
+
 	public void OnWorldCLick()
 	{
 		if (!MovementLock)
