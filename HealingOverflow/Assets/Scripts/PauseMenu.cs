@@ -16,9 +16,11 @@ public class PauseMenu : MonoBehaviour {
         {
             if (isGamePaused)
             {
+               
                 Resume();
             }else
             {
+                GameManager.PauseGame();
                 Pause();
             }
         }

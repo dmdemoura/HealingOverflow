@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     public static int orcsMortos;
     public static int totalHealing;
 
-    private void StartGame()
+    public void StartGame()
     {
         orcsMortos = 0;
         totalHealing = 0;
