@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
-        Debug.Log("ERRO, tentando adicionar uma entidade que não faz aprte da lsita de entidades");
+        Debug.Log("ERRO, tentando adicionar uma entidade que não faz parte da lista de entidades");
         
     }
 
