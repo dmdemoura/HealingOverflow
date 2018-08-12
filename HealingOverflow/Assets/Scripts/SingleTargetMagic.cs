@@ -31,7 +31,7 @@ public abstract class SingleTargetMagic : Magic
                 Health health = collider.gameObject.GetComponent<Health>();
                 if (health)
                 {
-                    SpriteRenderer spriteRenderer = collider.gameObject.GetComponent<SpriteRenderer>();
+                    SpriteRenderer spriteRenderer = collider.gameObject.GetComponentInChildren<SpriteRenderer>();
                     if (spriteRenderer)
                     {
                         if (lastSelectedRenderer)

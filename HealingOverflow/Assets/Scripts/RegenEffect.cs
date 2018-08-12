@@ -14,6 +14,7 @@ public class RegenEffect : MonoBehaviour
     }
     private void SelfDestroy()
     {
+        Destroy(regenAnimation);
         Destroy(this);
     }
     public void Activate(int healingPower, float healingPulseRate, float healingDuration, GameObject regenAnimationPrefab)
@@ -24,6 +25,6 @@ public class RegenEffect : MonoBehaviour
         activated = true;
         InvokeRepeating("HealPulse", 0.0f, healingPulseRate);
         Invoke("SelfDestroy", healingDuration);
-        GameObject regenAnimation = Instantiate(regenAnimationPrefab, transform);
+        regenAnimation = Instantiate(regenAnimationPrefab, transform);
     }
 }
