@@ -14,26 +14,22 @@ public class HealingCircle : MonoBehaviour
 		this.duration = duration;
 		this.healingPower = healingPower;
 		activated = true;
-	}
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 30.0f);
+
+        foreach (Collider2D collider in colliders)
+        {
+            Health health = collider.gameObject.GetComponent<Health>();
+            if (health && healingPower > 0)
+            {
+                health.Damage(-healingPower);
+            }
+        }
+    }
 	private void Update() 
 	{
 		if (activated)
 		{
-			if (Time.realtimeSinceStartup - startTime < duration)
-			{
-				Collider2D[] colliders =Physics2D.OverlapCircleAll(transform.position, 30.0f);
-			
-				foreach (Collider2D collider in colliders)
-				{
-					Health health = collider.gameObject.GetComponent<Health>();
-					if (health)
-					{
-						health.Damage(-healingPower);
-					}
-				}
-				healingPower = 0;
-			}
-			else
+			if (Time.realtimeSinceStartup - startTime >= duration)
 			{
 				Destroy(gameObject);
 			}
