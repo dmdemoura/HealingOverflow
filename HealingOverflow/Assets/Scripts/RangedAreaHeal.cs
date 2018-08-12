@@ -4,7 +4,7 @@ public class RangedAreaHeal : Magic
 	[SerializeField] private Camera mainCamera;
 	[SerializeField] private GameObject healingCirclePrefab;
     [SerializeField] private float healingCircleDuration;
-    [SerializeField] private float healingCirclePower;
+    [SerializeField] private int healingCirclePower;
     private HealingCircle healingCircle;
     private bool isSelecting = false;
     protected override void OnUpdate()
