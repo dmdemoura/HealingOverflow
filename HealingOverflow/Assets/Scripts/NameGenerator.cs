@@ -6,7 +6,7 @@ using UnityEngine;
 public static class NameGenerator{
 
 	private static float charProbability = 0.3f;
-	private static float numProbability = 0.7f;
+	private static float numProbability = 0.5f;
 	private static string[] words = {
 		"Dark",
 		"Master",
