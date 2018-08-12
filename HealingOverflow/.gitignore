@@ -37,3 +37,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+#Adicionados pela equipe Do HealingOverflow
+HealingOverflow/ProjectSettings/ProjectVersion.txt
