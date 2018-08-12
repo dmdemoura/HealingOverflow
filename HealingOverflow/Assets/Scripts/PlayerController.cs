@@ -10,14 +10,35 @@ public class PlayerController : MonoBehaviour
 	private Vector3 destination;
 	private float moveProgress;
 	public bool MovementLock { get; set; }
-	private void Update()
+
+    private Rigidbody2D mRigidy;
+    private Animator mAnim;
+
+    //List<Animation>
+    void Start()
+    {
+        mRigidy = gameObject.GetComponent<Rigidbody2D>();
+        mAnim = GetComponent<Animator>();
+    }
+
+    private void Update()
 	{
-		if (moveProgress != 1.0f)
-		{
-			moveProgress += moveSpeed;
-			transform.position = Vector3.Lerp(transform.position, destination, moveProgress);
-		}
-	}
+        Vector3 dir = (destination - transform.position);
+        if (dir.magnitude > 0.1)
+        {
+            mRigidy.velocity = dir.normalized * moveSpeed;
+        }
+        else
+        {
+            mRigidy.velocity = Vector3.zero;
+        }
+        Debug.Log("Vetor:" + mRigidy.velocity + " Normalizado:" + mRigidy.velocity.normalized);
+        
+        mAnim.SetFloat("Horizontal",mRigidy.velocity.normalized.x);
+        mAnim.SetFloat("Vertical",mRigidy.velocity.normalized.y);
+    }
+    
+
 	public void OnWorldCLick()
 	{
 		if (!MovementLock)
