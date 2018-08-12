@@ -150,8 +150,6 @@ public class IANoobsandOrcs : MonoBehaviour
             if(collider.gameObject != this.gameObject && collider.gameObject.GetComponent<Health>().currentHealth > 0 && health.currentHealth > 0)
             {
                 collider.GetComponent<Health>().Damage(damage);
-              
-
             }
 
         }
