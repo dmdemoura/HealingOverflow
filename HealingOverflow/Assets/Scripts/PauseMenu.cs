@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour {
 
-    public static bool isGamePaused = false;
-
+    public bool isGamePaused = false;
+    public GameObject PauseCanvas;
     private void Update()
     {
-        
+        if (PauseCanvas.activeSelf == false)
+        {
+            isGamePaused = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isGamePaused)
+            {
+                Resume();
+            }else
+            {
+                Pause();
+            }
+        }
     }
 
     void Resume()
     {
         isGamePaused = false;
+        PauseCanvas.SetActive(false);
+    }
+    void Pause()
+    {
+        PauseCanvas.SetActive(true);
+        isGamePaused = true;
     }
 }

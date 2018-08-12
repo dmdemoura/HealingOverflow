@@ -194,3 +194,98 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1366849987
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4470643344294002, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 331.9314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470643344294002, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 149.8352
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470643344294002, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470643344294002, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470643344294002, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470643344294002, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470643344294002, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470643344294002, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82580862210634388, guid: 90b3425bece71d240b8a35a0cd31084c,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec97a1c41613b9f4182b771dd11b1c8e, type: 3}
+    - target: {fileID: 82580862210634388, guid: 90b3425bece71d240b8a35a0cd31084c,
+        type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 97a2850e059d28047aa9076b8772b9c9,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 90b3425bece71d240b8a35a0cd31084c, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1632336235
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 451.26266
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 188.96051
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.9815216
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4876088690017212, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e8e1ea5970fbb3a4a90924b7ce67873c, type: 2}
+  m_IsPrefabParent: 0
