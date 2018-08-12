@@ -12,7 +12,7 @@ public class Health : MonoBehaviour {
 
     public PercentBar percentbar;
 
-    private void Awake()
+    private void Start()
     {
         currentHealth = startingHealth;
         percentbar.Value = startingHealth;
