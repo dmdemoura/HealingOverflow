@@ -6,15 +6,15 @@ using UnityEngine.AI;
 
 public class IANoobsandOrcs : MonoBehaviour
 {
-    public GameObject _target;
+    GameObject _target;
     Transform target;
+
     public float speed = 5f;
     public float timeBetweenAttacks = 0.5f;
     public int damage = 4;
     public bool attackArea;
-    public bool playerattack;
     float timer;
-
+    
     private Rigidbody2D mRigidbody;
     Health health;
 
@@ -46,6 +46,7 @@ public class IANoobsandOrcs : MonoBehaviour
                 if (timer >= timeBetweenAttacks)
                 {
                     Attack();
+                   
                 }
             }
             else
@@ -72,6 +73,7 @@ public class IANoobsandOrcs : MonoBehaviour
                 if (timer >= timeBetweenAttacks)
                 {
                     Attack();
+                   
                 }
 
             }
@@ -134,11 +136,18 @@ public class IANoobsandOrcs : MonoBehaviour
     void Attack()
     {
         timer = 0f;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position * 1.1f, 0.9f);
 
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + Vector3.forward, 1f);
+        
         foreach (Collider2D collider in colliders)
         {
-            health.Damage(damage);
+            if(collider.gameObject != this.gameObject)
+            {
+                collider.GetComponent<Health>().Damage(damage);
+              
+
+            }
+
         }
     }
 

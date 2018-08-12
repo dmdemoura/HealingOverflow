@@ -165,8 +165,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1932815750053534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.4648466, y: -5.039239, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0.26, y: 2.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4198523636188548}
   - {fileID: 224341385005309506}
@@ -334,8 +334,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   speed: 5
   timeBetweenAttacks: 0.5
-  Enemydamage: 5
-  Playerdamage: 2
+  damage: 2
   attackArea: 0
   playerattack: 0
 --- !u!114 &114779434392549854
@@ -378,8 +377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   currentHealth: 0
-  PlayerisDead: 0
-  EnemyisDead: 0
   healthSlider: {fileID: 114436811721705258}
 --- !u!212 &212485240105476362
 SpriteRenderer:
