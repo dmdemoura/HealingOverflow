@@ -1,56 +1,59 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
 
     public int startingHealth = 100;
     public int currentHealth;
 
-    public bool PlayerisDead;
-    public bool EnemyisDead;
+    bool PlayerisDead;
+    bool EnemyisDead;
 
-    IANoobsandOrcs ia;
+    public Slider healthSlider;
 
-    private void Start()
+    private void Awake()
     {
-        ia = GetComponent<IANoobsandOrcs>();
         currentHealth = startingHealth;
+        healthSlider.value = startingHealth;
     }
+    private void Update()
+    {
+        if (currentHealth > 100)
+        {
+
+            currentHealth = 100;
+            Vector3 PlayerPos = this.transform.position + Vector3.right;
+            GameManager.SpawnAt(gameObject.tag, PlayerPos);
+            
+        }
+
+        if(this.CompareTag("Player") && currentHealth <= 0 && !PlayerisDead)
+        {
+            PlayerisDead = true;
+            Debug.Log("Game Over");
+        }
+        else if(this.CompareTag("Enemy") && currentHealth <= 0 && !EnemyisDead)
+        {
+            EnemyisDead = true;
+            GameManager.DestroyEntity(this.gameObject);
+        }
+    }
+
 
     public void Damage(int amount)
     {
-        if(ia.attackArea)
-        {
-            ia._target.GetComponent<Health>().currentHealth -= amount;
-        }
-        else if(ia.playerattack)
-        {
-            currentHealth -= amount;
-        }
-        
+        currentHealth -= amount;
 
-        if (this.CompareTag("Player"))
-        { 
-            if (ia._target.GetComponent<Health>().currentHealth <= 0 && !EnemyisDead)
-            {
-               EnemyisDead = true;
-                GameManager.DestroyEntity(ia._target);
-                
-            }
-           
-        }
-        else if(this.CompareTag("Enemy"))
-        {
-            if (ia._target.GetComponent<Health>().currentHealth <= 0 && !PlayerisDead)
-            {
-                PlayerisDead = true;
-                Debug.Log("Game Over");
-            }
-           
-        }
-
+        healthSlider.value = currentHealth;
     }
-    
-    
+
+    public void Heal(int healingPower)
+    {
+        currentHealth += healingPower;
+
+        healthSlider.value = currentHealth;
+    }
+
 }
