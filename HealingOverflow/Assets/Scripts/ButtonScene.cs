@@ -6,10 +6,12 @@ public class ButtonScene : MonoBehaviour {
     public string NextScene;
 public void PlayGame()
     {
-        SceneManager.LoadScene(NextScene);
+        //SceneManager.LoadScene(NextScene);
+        GameManager.instance.StartGame();
     }
 public void QuitGame()
     {
+        GameManager.DespauseGame();
         Application.Quit();
     }
 }
