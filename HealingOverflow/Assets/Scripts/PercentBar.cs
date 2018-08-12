@@ -23,8 +23,9 @@ public class PercentBar : MonoBehaviour
 				barValue = 100f;
 				extraValue = value - 100f;
 			}
-			bar.anchorMax = new Vector2(barValue, bar.anchorMax.y);
-			extraBar.anchorMax = new Vector2(extraValue, extraBar.anchorMax.y);
+			bar.anchorMax = new Vector2(barValue / 100, bar.anchorMax.y);
+			if (extraBar)
+				extraBar.anchorMax = new Vector2(extraValue / 100, extraBar.anchorMax.y);
 		}
 	}
 }

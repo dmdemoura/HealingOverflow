@@ -22,9 +22,9 @@ public abstract class Magic : MonoBehaviour
 
         if (cooldownBar)
             if (!IsLocked && isOnCooldown)
-                cooldownBar.Value = (Time.realtimeSinceStartup - cooldownActivateTime)/cooldown;
+                cooldownBar.Value = (Time.realtimeSinceStartup - cooldownActivateTime)/cooldown * 100;
             else
-                cooldownBar.Value = 1.0f;
+                cooldownBar.Value = 100.0f;
 
         OnUpdate();
     }
