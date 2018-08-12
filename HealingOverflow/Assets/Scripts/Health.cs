@@ -8,9 +8,9 @@ public class Health : MonoBehaviour {
     public int startingHealth = 100;
     public int currentHealth;
 
-   public bool isDead;
+    public bool isDead;
 
-    PercentBar percentbar;
+    public PercentBar percentbar;
 
     private void Awake()
     {
