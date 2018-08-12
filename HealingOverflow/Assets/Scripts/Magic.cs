@@ -20,10 +20,11 @@ public abstract class Magic : MonoBehaviour
         if (Input.GetKeyDown(activateKey))
             TryCasting();
 
-        if (!IsLocked && isOnCooldown && cooldownBar)
-            cooldownBar.Value = (Time.realtimeSinceStartup - cooldownActivateTime)/cooldown;
-        else
-            cooldownBar.Value = 1.0f;
+        if (cooldownBar)
+            if (!IsLocked && isOnCooldown)
+                cooldownBar.Value = (Time.realtimeSinceStartup - cooldownActivateTime)/cooldown;
+            else
+                cooldownBar.Value = 1.0f;
 
         OnUpdate();
     }

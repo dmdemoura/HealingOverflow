@@ -21,7 +21,7 @@ public class HealingCircle : MonoBehaviour
             Health health = collider.gameObject.GetComponent<Health>();
             if (health && healingPower > 0)
             {
-                health.Damage(-healingPower);
+                health.Heal(healingPower);
             }
         }
     }

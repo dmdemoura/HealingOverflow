@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     //List<Animation>
     void Start()
     {
+		GameManager.AddEntity(gameObject);
         mRigidy = gameObject.GetComponent<Rigidbody2D>();
         mAnim = GetComponent<Animator>();
     }

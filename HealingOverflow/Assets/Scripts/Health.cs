@@ -8,37 +8,29 @@ public class Health : MonoBehaviour {
     public int startingHealth = 100;
     public int currentHealth;
 
-    bool PlayerisDead;
-    bool EnemyisDead;
+   public bool isDead;
 
-    public Slider healthSlider;
+    PercentBar percentbar;
 
     private void Awake()
     {
         currentHealth = startingHealth;
-        healthSlider.value = startingHealth;
+        percentbar.Value = startingHealth;
     }
     private void Update()
     {
-        if (currentHealth > 100)
+        if (currentHealth == 200)
         {
-
             currentHealth = 100;
             Vector3 PlayerPos = this.transform.position + Vector3.right;
-            GameManager.SpawnAt(gameObject.tag, PlayerPos);
-            
+            GameManager.SpawnAt(gameObject.tag, PlayerPos); 
         }
 
-        if(this.CompareTag("Player") && currentHealth <= 0 && !PlayerisDead)
+        if(currentHealth <= 0 && !isDead)
         {
-            PlayerisDead = true;
-            Debug.Log("Game Over");
-        }
-        else if(this.CompareTag("Enemy") && currentHealth <= 0 && !EnemyisDead)
-        {
-            EnemyisDead = true;
             GameManager.DestroyEntity(this.gameObject);
         }
+    
     }
 
 
@@ -46,14 +38,14 @@ public class Health : MonoBehaviour {
     {
         currentHealth -= amount;
 
-        healthSlider.value = currentHealth;
+        percentbar.Value = currentHealth;
     }
 
     public void Heal(int healingPower)
     {
         currentHealth += healingPower;
 
-        healthSlider.value = currentHealth;
+       percentbar.Value = currentHealth;
     }
 
 }

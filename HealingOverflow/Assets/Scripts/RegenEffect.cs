@@ -8,7 +8,7 @@ public class RegenEffect : MonoBehaviour
     private Health health;
     private void HealPulse()
     {
-        health.Damage(-healingPower);
+        health.Heal(healingPower);
     }
     private void SelfDestroy()
     {
