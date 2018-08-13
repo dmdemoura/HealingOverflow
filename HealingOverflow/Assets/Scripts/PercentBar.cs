@@ -16,16 +16,16 @@ public class PercentBar : MonoBehaviour
 		{
 			float barValue = 0f;
 			float extraValue = 0f;
-			if (value <= 100f)
+			if (value <= 1f)
 				barValue = value;
 			else
 			{
-				barValue = 100f;
-				extraValue = value - 100f;
+				barValue = 1f;
+				extraValue = value - 1f;
 			}
-			bar.anchorMax = new Vector2(barValue / 100, bar.anchorMax.y);
+			bar.anchorMax = new Vector2(barValue, bar.anchorMax.y);
 			if (extraBar)
-				extraBar.anchorMax = new Vector2(extraValue / 100, extraBar.anchorMax.y);
+				extraBar.anchorMax = new Vector2(extraValue, extraBar.anchorMax.y);
 		}
 	}
 }

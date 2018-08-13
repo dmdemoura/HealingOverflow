@@ -147,11 +147,6 @@ public class IANoobsandOrcs : MonoBehaviour
         
         foreach (Collider2D collider in colliders)
         {
-            Debug.Log("Is collider null?" + (collider == true));
-            Debug.Log("Is collider gameobject null?" + (collider.gameObject == true));
-            Debug.Log("Is health null?" + (collider.gameObject.GetComponent<Health>() == true));
-            Debug.Log("Is my health null?" + (health == true));
-            //if(collider && collider.gameObject != this.gameObject && collider.gameObject.GetComponent<Health>().currentHealth > 0 && health.currentHealth > 0)
             if (collider)
                 if (collider.gameObject != gameObject)
                 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,7 +24,29 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-	{
+    {
+		if (!MovementLock && Input.GetMouseButtonDown(moveMouseButton))
+		{
+			Vector3 screenPos = Input.mousePosition;
+			Vector2 worldpos  = mainCamera.ScreenToWorldPoint(screenPos);
+
+            Collider2D[] colliders = Physics2D.OverlapPointAll(worldpos);
+            
+            bool hitWall = false;
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.gameObject.CompareTag("Walls"))
+                {
+                    hitWall = true;
+                }
+            }
+
+            if (!hitWall)
+            {
+                moveProgress = 0.0f;
+                destination = worldpos;
+            }
+		}
         Vector3 dir = (destination - transform.position);
         if (dir.magnitude > 0.1)
         {
@@ -33,22 +56,9 @@ public class PlayerController : MonoBehaviour
         {
             mRigidy.velocity = Vector3.zero;
         }
-        Debug.Log("Vetor:" + mRigidy.velocity + " Normalizado:" + mRigidy.velocity.normalized);
+        //Debug.Log("Vetor:" + mRigidy.velocity + " Normalizado:" + mRigidy.velocity.normalized);
         
         mAnim.SetFloat("Horizontal",mRigidy.velocity.normalized.x);
         mAnim.SetFloat("Vertical",mRigidy.velocity.normalized.y);
     }
-    
-
-	public void OnWorldCLick()
-	{
-		if (!MovementLock)
-		{
-			Vector3 screenPos = Input.mousePosition;
-			Vector2 worldpos  = mainCamera.ScreenToWorldPoint(screenPos);
-
-			moveProgress = 0.0f;
-			destination = worldpos;
-		}
-	}
 }

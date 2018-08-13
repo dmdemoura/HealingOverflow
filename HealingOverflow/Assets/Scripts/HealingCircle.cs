@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealingCircle : MonoBehaviour 
 {
+	[Tooltip("For correcting for the sprite not filling the entire object")]
+	[SerializeField] private float sizeMultiplier = 0.781f;
 	private bool activated = false;
 	private float startTime;
 	private float duration;
@@ -14,7 +16,7 @@ public class HealingCircle : MonoBehaviour
 		this.duration = duration;
 		this.healingPower = healingPower;
 		activated = true;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 5.0f);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, transform.lossyScale.x / 2f * sizeMultiplier);
 
         foreach (Collider2D collider in colliders)
         {

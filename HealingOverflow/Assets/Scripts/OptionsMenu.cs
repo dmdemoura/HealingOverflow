@@ -34,6 +34,6 @@ public class OptionsMenu : MonoBehaviour {
         {
             initialDifficulty = 4;
         }
-        testint = difficulty;
+        GameManager.Difficulty = initialDifficulty;
     } 
 }

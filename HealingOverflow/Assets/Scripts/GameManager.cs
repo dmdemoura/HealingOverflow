@@ -5,8 +5,24 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private bool noDeathOnGameOver;
     public bool debug;//variavel apra printar informaçoes de debug no log
     public static bool _debug;
+    private static int _difficulty;
+    public static int Difficulty
+    {
+        get
+        {
+            return _difficulty;
+        }
+        set
+        {
+            if (value >= 0)
+                _difficulty = value;
+            else
+                Debug.Log("ERRO: Tentativa de setar dificuldade para um valor < 0");
+        }
+    }
     //==========Declaração do singleton=============
     public static GameManager instance = null;
     
@@ -150,7 +166,7 @@ public class GameManager : MonoBehaviour
     {
         if (_entityList.Contains(entity))
         {
-            if(entity.CompareTag("Player")){
+            if(!instance.noDeathOnGameOver && entity.CompareTag("Player")){
                 instance.EndGame();
             }
             
@@ -161,14 +177,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("ERRO! Entidade tentando ser distruida não foi adicionada ao GameManager");
             return;
-        }
-    }
-
-    public static void SetDificult(int dif)
-    {
-        if (dif >= 0)
-        {
-            GameManager.instance.GetComponent<WaveSpawner>().SetDificult(dif);
         }
     }
 

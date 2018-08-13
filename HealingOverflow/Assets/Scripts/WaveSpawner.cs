@@ -15,6 +15,8 @@ public class WaveSpawner : MonoBehaviour {
     [SerializeField] float dificultDelay = 10;
     // Use this for initialization
     void Start () {
+        _dificult = GameManager.Difficulty;
+
         if (spawnPoints.Count <= 0)
         {
             spawnPoints = new List<Transform>();
@@ -58,10 +60,5 @@ public class WaveSpawner : MonoBehaviour {
         _dificult++;
         delayReduction *= 0.9f;
         Invoke("GetHarder", dificultDelay);
-    }
-
-    public void SetDificult(int dificult)
-    {
-        _dificult = dificult;
     }
 }

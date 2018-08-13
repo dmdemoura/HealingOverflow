@@ -5,24 +5,30 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
 
-    public int startingHealth = 100;
+    [SerializeField] private PercentBar percentbar;
+    [SerializeField] public int startingHealth = 100;
     public int currentHealth;
-
-    public bool isDead;
-
-    public PercentBar percentbar;
+    public int duplicationHealth = 200;
+    private bool isDead;
+    public float HealthPercentage
+    {
+        get
+        {
+            return (float) currentHealth / (float) startingHealth;
+        }
+    }
 
     private void Start()
     {
         currentHealth = startingHealth;
-        percentbar.Value = startingHealth;
+        percentbar.Value = HealthPercentage;
     }
     private void Update()
     {
-        if (currentHealth >= 200)
+        if (currentHealth >= duplicationHealth)
         {
-            currentHealth = 100;
-            percentbar.Value = currentHealth;
+            currentHealth = startingHealth;
+            percentbar.Value = HealthPercentage;
 
             Vector3 PlayerPos = this.transform.position + Vector3.right;
             GameManager.SpawnAt(gameObject.tag, PlayerPos); 
@@ -39,14 +45,14 @@ public class Health : MonoBehaviour {
     {
         currentHealth -= amount;
 
-        percentbar.Value = currentHealth;
+        percentbar.Value = HealthPercentage;
     }
 
     public void Heal(int healingPower)
     {
         currentHealth += healingPower;
 
-       percentbar.Value = currentHealth;
+       percentbar.Value = HealthPercentage;
     }
 
 }

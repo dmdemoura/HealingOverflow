@@ -5,7 +5,6 @@ public abstract class Magic : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private KeyCode activateKey;
     [SerializeField] private Image cooldownImage;
-    [SerializeField] private float movementCooldown;
     private PlayerController playerController;
     private float cooldownActivateTime;
     private bool isOnCooldown;
@@ -33,17 +32,11 @@ public abstract class Magic : MonoBehaviour
     {
         isOnCooldown = false;
     }
-    private void ResetPlayerMovement()
-    {
-        if (playerController)
-            playerController.MovementLock = false;
-    }
     protected virtual void OnUpdate() {}
     protected abstract void OnCast();
     protected void StartCooldown()
     {
-        if (playerController)
-            Invoke("ResetPlayerMovement", movementCooldown);
+        UnlockPlayerMovement();
         isOnCooldown = true;
         cooldownActivateTime = Time.realtimeSinceStartup;
         Invoke("ResetCooldown", cooldown);
@@ -51,6 +44,11 @@ public abstract class Magic : MonoBehaviour
     protected void ToggleLock()
     {
         isOnCooldown = !isOnCooldown;
+    }
+    protected void UnlockPlayerMovement()
+    {
+        if (playerController)
+            playerController.MovementLock = false;
     }
     public void TryCasting()
     {

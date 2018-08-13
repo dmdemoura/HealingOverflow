@@ -5,7 +5,6 @@ public class RegenEffect : MonoBehaviour
     private GameObject regenAnimation;
     private bool activated = false;
     private int healingPower;
-    private float healingDuration;
     private Health health;
 
     private void HealPulse()
@@ -20,7 +19,6 @@ public class RegenEffect : MonoBehaviour
     public void Activate(int healingPower, float healingPulseRate, float healingDuration, GameObject regenAnimationPrefab)
     {
         this.healingPower = healingPower;
-        this.healingDuration = healingDuration;
         health = GetComponent<Health>();
         activated = true;
         InvokeRepeating("HealPulse", 0.0f, healingPulseRate);

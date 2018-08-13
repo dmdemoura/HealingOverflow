@@ -176,7 +176,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.01
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -371,8 +371,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93296c849ec225a46b8790d8e96248be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startingHealth: 300
   currentHealth: 0
+  duplicationHealth: 350
   isDead: 0
   percentbar: {fileID: 114720150260008450}
 --- !u!114 &114720150260008450

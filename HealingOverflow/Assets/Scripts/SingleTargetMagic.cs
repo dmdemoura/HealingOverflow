@@ -25,43 +25,57 @@ public abstract class SingleTargetMagic : Magic
             Vector2 worldpos  = mainCamera.ScreenToWorldPoint(screenPos);
 
             Collider2D collider = Physics2D.OverlapPoint(worldpos);
-
-            if (collider && (!lastSelectedHealth || collider.gameObject != lastSelectedHealth.gameObject))
+            if (collider)
             {
-                Health health = collider.gameObject.GetComponent<Health>();
-                if (health)
+                if (!lastSelectedHealth || collider.gameObject != lastSelectedHealth.gameObject)
                 {
-                    SpriteRenderer spriteRenderer = collider.gameObject.GetComponentInChildren<SpriteRenderer>();
-                    if (spriteRenderer)
+                    Health health = collider.gameObject.GetComponent<Health>();
+                    if (health)
                     {
-                        if (lastSelectedRenderer)
-                            lastSelectedRenderer.color = lastDefaultColor;
+                        SpriteRenderer spriteRenderer = collider.gameObject.GetComponentInChildren<SpriteRenderer>();
+                        if (spriteRenderer)
+                        {
+                            if (lastSelectedRenderer)
+                                lastSelectedRenderer.color = lastDefaultColor;
 
-                        lastSelectedRenderer = spriteRenderer;
-                        lastSelectedHealth = health;
-                        lastDefaultColor = spriteRenderer.color;
-                        spriteRenderer.color = selectionColor;
+                            lastSelectedRenderer = spriteRenderer;
+                            lastSelectedHealth = health;
+                            lastDefaultColor = spriteRenderer.color;
+                            spriteRenderer.color = selectionColor;
+                        }
                     }
                 }
+            }
+            else
+            {                            
+                if (lastSelectedRenderer)
+                    lastSelectedRenderer.color = lastDefaultColor;
+                lastSelectedRenderer = null;
+                lastSelectedHealth = null;
             }
 
             if (Input.GetMouseButtonDown(0))
             {
+                isSelecting = false;
+                IsLocked = false;
                 if (lastSelectedRenderer)
                 {
                     lastSelectedRenderer.color = lastDefaultColor;
                     OnTargetFound(lastSelectedHealth.gameObject);
+                    StartCooldown();
                 }
-                isSelecting = false;
-                IsLocked = false;
-                StartCooldown();
+                else
+                {
+                    UnlockPlayerMovement();
+                }
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                if (lastSelectedRenderer)
-                    lastSelectedRenderer.color = lastDefaultColor;
                 isSelecting = false;
                 IsLocked = false;
+                if (lastSelectedRenderer)
+                    lastSelectedRenderer.color = lastDefaultColor;
+                UnlockPlayerMovement();
             }
         }
     }
